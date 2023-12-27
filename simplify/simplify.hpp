@@ -12,10 +12,13 @@ class Simplify
 {
 
 	public:
+
 		Simplify(Parser parser);
 		~Simplify();
 
-		std::vector<std::map<std::string, int> > getReducedExpression(void) const;
+		std::vector<Term>	getReducedExpression(void) const;
+
+		void	test(void) const;
 	
 	private:
 	
@@ -23,10 +26,10 @@ class Simplify
 		bool	compareExponent(const std::map<std::string, int> &alpha, const std::map<std::string, int> &bravo);
 		void    sortExpression(int exprType);
 		
-		std::vector<std::map<std::string, int> > 	_exprBeforeEqual;
-		std::vector<std::map<std::string, int> >	_exprAfterEqual;
-		std::vector<std::map<std::string, int> >	_reducedExpression;
-		int											_maxExponent;
+		std::vector<Term> 	_exprBeforeEqual;
+		std::vector<Term>	_exprAfterEqual;
+		std::vector<Term>	_reducedExpression;
+		int					_maxExponent;
 };
 
 #endif

@@ -3,6 +3,12 @@
 
 #include "./parsing/parsing.hpp"
 
-
+struct Term 
+{
+	int				sign;
+	int				exponent;
+	std::string		coef;
+	bool			isInt = true;	
+};
 
 #endif

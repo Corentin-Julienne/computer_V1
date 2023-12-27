@@ -11,7 +11,7 @@ Simplify::Simplify(Parser parser) {
 
 Simplify::~Simplify() {};
 
-std::vector<std::map<std::string, int> >	Simplify::getReducedExpression(void) const 
+std::vector<Term>	Simplify::getReducedExpression(void) const 
 {
 	return this->_reducedExpression;
 }
@@ -32,9 +32,25 @@ void	Simplify::sortExpression(int exprType) // test
 
 void	Simplify::reduceExpression(void) // test
 {
-	std::vector<std::map<std::string, int> >	reducedExpr = this->_exprBeforeEqual;
+	std::vector<Term>	reducedExpr = this->_exprBeforeEqual;
 
 	for (int i = 0; i <= this->_maxExponent && i < this->_exprAfterEqual.size(); i++) {
-		reducedExpr[i]["int"] += this->_exprAfterEqual[i]["int"] * this->_exprAfterEqual[i]["sign"] * (-1); 		
+		try
+		{
+			int	intVal = std::stoi(this->_exprAfterEqual[i].coef);
+
+			reducedExpr[i].coef += std::to_string(intVal * this->_exprAfterEqual[i].sign * (-1));
+		}
+		catch(const std::exception& e)
+		{
+			double doubleVal = std::stod(this->_exprAfterEqual[i].coef);
+
+			reducedExpr[i].coef += std::to_string(doubleVal * this->_exprAfterEqual[i].sign * (-1));
+		}
 	}
+}
+
+void	Simplify::test(void) const
+{
+	// write tests there	
 }
